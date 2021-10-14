@@ -38,7 +38,17 @@ void displayGameBoard(char board[6][6]) {
     printf("123456");
 }
 
-int getIntRange(int lowVal, int highVal);
+int getIntRange(int lowVal, int highVal) {
+    int lowVal = 0;
+    int highVal = 0;
+    int uVal = 0;
+    scanf("%d", &uVal);
+    while (uVal <= lowVal && uVal >= highVal) {
+        printf("%d is not valid; enter a value between %d and %d: ", uVal, lowVal, highVal);
+        scanf("%d", &uVal);
+    }
+    return uVal;
+}
 
 int getIntSafe();
 
