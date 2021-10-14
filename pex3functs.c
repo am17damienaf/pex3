@@ -30,7 +30,13 @@ void computerTakeTurn(char board[6][6]) {
     displayGameBoard(board);
 }
 
-void displayGameBoard(char board[6][6]);
+void displayGameBoard(char board[6][6]) {
+    printf("123456");
+    for (int i = 0; i < 6; ++i) {
+        printf(board[i]);
+    }
+    printf("123456");
+}
 
 int getIntRange(int lowVal, int highVal);
 
