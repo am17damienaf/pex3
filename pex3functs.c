@@ -22,8 +22,8 @@ void computerTakeTurn(char board[6][6]) {
     } while (board[0][column] != '.');
     while (board[column][row] != '.' && row > -1) {
         --row;
+        board[row][column] = 'O';
     }
-    board[row][column] = 'O';
     printf("the computer chooses column: %d\n", column + 1);
     displayGameBoard(board);
 }
