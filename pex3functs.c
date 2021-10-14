@@ -94,12 +94,39 @@ void userTakeTurn(char board[6][6]) {
 }
 
 int getWinner(char board[6][6]) {
-    int winner;
-    if (winner == 2) {
-        return 2;
-    } else if (winner = 1) {
-        return 1;
-    } else {
-        return 0;
+    int numX;
+    int numO;
+    for (int i = 0; i < 6; ++i) {
+        numX = 0;
+        numO = 0;
+        for (int j = 0; j < 6; ++j) {
+            if (board[i][j] == 'X') {
+                ++numX;
+            } else if (board[i][j] == 'O') {
+                ++numO;
+            }
+        }
+        if (numX == 4) {
+            return 2;
+        } else if (numO == 4) {
+            return 1;
+        }
     }
+    for (int i = 0; i < 6; ++i) {
+        numX = 0;
+        numO = 0;
+        for (int j = 0; j < 6; ++j) {
+            if (board[j][i] == 'X') {
+                ++numX;
+            } else if (board[j][i] == 'O') {
+                ++numO;
+            }
+        }
+        if (numX == 4) {
+            return 2;
+        } else if (numO = 4) {
+            return 1;
+        }
+    }
+    return 0;
 }
