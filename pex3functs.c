@@ -31,18 +31,19 @@ void computerTakeTurn(char board[6][6]) {
 }
 
 void displayGameBoard(char board[6][6]) {
-    printf("123456");
+    printf("123456\n");
     for (int i = 0; i < 6; ++i) {
-        printf(board[i]);
+        for (int j = 0; j < 6; ++j) {
+            printf("%c", board[i][j]);
+        }
+        printf("\n");
     }
-    printf("123456");
+    printf("123456\n");
 }
 
 int getIntRange(int lowVal, int highVal) {
-    int lowVal = 0;
-    int highVal = 0;
     int uVal = 0;
-    scanf("%d", &uVal);
+    getIntSafe();
     while (uVal <= lowVal && uVal >= highVal) {
         printf("%d is not valid; enter a value between %d and %d: ", uVal, lowVal, highVal);
         scanf("%d", &uVal);
@@ -84,7 +85,7 @@ void placePiece(char board[6][6], char piece, int column) {
 void userTakeTurn(char board[6][6]) {
     int column = 0;
     printf("Where put?\n");
-    scanf("%d", &column);
+    column = getIntRange(1, 6) - 1;
     if (legalPlay(board, column)) {
         printf("User's choice: %d", column);
         placePiece(board, 'X', column);
@@ -124,9 +125,72 @@ int getWinner(char board[6][6]) {
         }
         if (numO == 4) {
             return 2;
-        } else if (numX = 4) {
+        } else if (numX == 4) {
             return 1;
         }
     }
     return 0;
+}
+
+void testGetWinner() {
+    char testBoard1[6][6] = {
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { 'O', '.', '.', '.', '.', '.',},
+        { 'O', '.', '.', '.', '.', '.',},
+        { 'O', '.', '.', '.', '.', '.',},
+        { 'O', '.', '.', '.', '.', '.',}};
+    char testBoard2[6][6] = {
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { 'O', '.', 'O', '.', 'O', 'O',}};
+    char testBoard3[6][6] = {
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', 'X', '.', '.',},
+        { '.', '.', '.', 'X', '.', '.',},
+        { '.', '.', '.', 'X', '.', '.',},
+        { '.', '.', '.', 'X', '.', '.',}};
+    char testBoard4[6][6] = {
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', '.', '.', '.', '.', '.',},
+        { '.', 'X', 'X', 'X', '.', 'X',}};
+    char testBoard5[6][6] = {
+        { 'X', 'O', 'X', 'O', 'X', 'O',},
+        { 'O', 'X', 'O', 'X', 'O', 'X',},
+        { 'X', 'O', 'X', 'O', 'X', 'O',},
+        { 'O', 'X', 'O', 'X', 'O', 'X',},
+        { 'X', 'O', 'X', 'O', 'X', 'O',},
+        { 'O', 'X', 'O', 'X', 'O', 'X',}};
+    // -------------------
+    if (getWinner(testBoard1) != 2)
+        {printf("Error! Did not return expected results: 2\n");exit(1);}
+    else
+        {printf("Successful Test!\n");}
+    // -------------------------------
+    if (getWinner(testBoard2) != 2)
+        {printf("Error! Did not return expected results: 2\n");exit(1);}
+    else
+        {printf("Successful Test!\n");}
+    // -------------------------------
+    if (getWinner(testBoard3) != 1)
+        {printf("Error! Did not return expected results: 1\n");exit(1);}
+    else
+        {printf("Successful Test!\n");}
+    // ---------------------------------
+    if (getWinner(testBoard4) != 1)
+        {printf("Error! Did not return expected results: 1\n");exit(1);}
+    else
+        {printf("Successful Test!\n");}
+    // ----------------------------------
+    if (getWinner(testBoard5) != 0)
+        {printf("Error! Did not return expected results: 0\n");exit(1);}
+    else
+        {printf("Successful Test!\n");}
 }

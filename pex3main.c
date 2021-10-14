@@ -1,68 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
 
 #include "pex3functs.h"
-
 
 int main() {
     srand(time(0));
 
-    //test
-    char testBoard1[6][6] = {
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { 'O', '.', '.', '.', '.', '.',},
-        { 'O', '.', '.', '.', '.', '.',},
-        { 'O', '.', '.', '.', '.', '.',},
-        { 'O', '.', '.', '.', '.', '.',}};
-    char testBoard2[6][6] = {
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { 'O', '.', 'O', '.', 'O', 'O',}};
-    char testBoard3[6][6] = {
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', 'X', '.', '.',},
-        { '.', '.', '.', 'X', '.', '.',},
-        { '.', '.', '.', 'X', '.', '.',},
-        { '.', '.', '.', 'X', '.', '.',}};
-    char testBoard4[6][6] = {
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', '.', '.', '.', '.', '.',},
-        { '.', 'X', 'X', 'X', '.', 'X',}};
-    char testBoard5[6][6] = {
-        { 'X', 'O', 'X', 'O', 'X', 'O',},
-        { 'O', 'X', 'O', 'X', 'O', 'X',},
-        { 'X', 'O', 'X', 'O', 'X', 'O',},
-        { 'O', 'X', 'O', 'X', 'O', 'X',},
-        { 'X', 'O', 'X', 'O', 'X', 'O',},
-        { 'O', 'X', 'O', 'X', 'O', 'X',}};
-    
-    if (getWinner(testBoard1) != 2) {
-        printf("Error! Did not return expected results: 2");
-    }
-    if (getWinner(testBoard2) != 2) {
-        printf("Error! Did not return expected results: 2");
-    }
-    if (getWinner(testBoard3) != 1) {
-        printf("Error! Did not return expected results: 1");
-    }
-    if (getWinner(testBoard4) != 1) {
-        printf("Error! Did not return expected results: 1");
-    }
-    if (getWinner(testBoard5) != 0) {
-        printf("Error! Did not return expected results: 0");
-    }
+    //testGetWinner();
+    // Test proved getWinner() successful
 
-
-    //char gameBoard[6][6];
-
+    char gameBoard[6][6];
+    int totTurns = 0;
+    int turn = 0;
     printf("Not Four!\n\n");
-    //clearGameBoard(gameBoard);
+    clearGameBoard(gameBoard);
+    displayGameBoard(gameBoard);
+    while (getWinner(gameBoard) != 1 && getWinner(gameBoard) != 2 && totTurns < 36) {
+        if (turn == 0) {
+            userTakeTurn(gameBoard);
+            turn = 1;
+        } else {
+            computerTakeTurn(gameBoard);
+            turn = 0;
+        }
+    }
+    switch (getWinner(gameBoard)) {
+        case 0:
+            printf("tie game.");
+            break;
+        case 1:
+            printf("you win!");
+            break;
+        case 2:
+            printf("you lose!");
+            break;
+    }
 
     return 0;
 }

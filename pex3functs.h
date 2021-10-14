@@ -22,4 +22,6 @@ void userTakeTurn(char board[6][6]);
 
 int getWinner(char board[6][6]);
 
+void testGetWinner();
+
 #endif
