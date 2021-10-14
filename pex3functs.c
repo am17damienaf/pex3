@@ -50,7 +50,17 @@ int getIntRange(int lowVal, int highVal) {
     return uVal;
 }
 
-int getIntSafe();
+int getIntSafe() {
+    int value;
+    int scanfReturn = 0;
+    scanfReturn = scanf("%i", &value);
+    fflush(stdin);
+    if (scanfReturn != 1) {
+        fprintf(stderr, "Bad integer input - terminating\n");
+        exit(1);
+    }
+    return value;
+}
 
 bool legalPlay(char board[6][6], int column);
 
