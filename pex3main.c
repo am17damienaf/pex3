@@ -1,3 +1,8 @@
+/*
+
+Documentation statement: no help recieved, no outside sources used.
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

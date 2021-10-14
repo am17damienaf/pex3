@@ -20,13 +20,11 @@ void computerTakeTurn(char board[6][6]) {
     do {
         column = rand() % 6;
     } while (board[0][column] != '.');
-    do {
-        if (board[row][column] == '.') {
-            board[row][column] = 'O';
-        }
+    while (board[column][row] != '.' && row > -1) {
         --row;
-    } while (board[column][row] != '.' && row > -1);
-    printf("the computer chooses column: %d\n", column);
+    }
+    board[row][column] = 'O';
+    printf("the computer chooses column: %d\n", column + 1);
     displayGameBoard(board);
 }
 
@@ -44,7 +42,7 @@ void displayGameBoard(char board[6][6]) {
 int getIntRange(int lowVal, int highVal) {
     int uVal = 0;
     getIntSafe();
-    while (uVal <= lowVal && uVal >= highVal) {
+    while (uVal < lowVal && uVal > highVal) {
         printf("%d is not valid; enter a value between %d and %d: ", uVal, lowVal, highVal);
         scanf("%d", &uVal);
     }
