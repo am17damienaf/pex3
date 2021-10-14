@@ -70,7 +70,15 @@ bool legalPlay(char board[6][6], int column){
     }
 }
 
-void placePiece(char board[6][6], char piece, int column);
+void placePiece(char board[6][6], char piece, int column) {
+    int row = 5;
+    do {
+        if (board[row][column] == '.') {
+            board[row][column] = piece;
+        }
+        --row;
+    } while (board[column][row] != '.' && row > -1);
+}
 
 void userTakeTurn(char board[6][6]);
 
