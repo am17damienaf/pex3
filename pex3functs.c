@@ -78,8 +78,28 @@ void placePiece(char board[6][6], char piece, int column) {
         }
         --row;
     } while (board[column][row] != '.' && row > -1);
+    displayGameBoard(board);
 }
 
-void userTakeTurn(char board[6][6]);
+void userTakeTurn(char board[6][6]) {
+    int column = 0;
+    printf("Where put?\n");
+    scanf("%d", &column);
+    if (legalPlay(board, column)) {
+        printf("User's choice: %d", column);
+        placePiece(board, 'X', column);
+    } else {
+        printf("New put plz\n");
+    }
+}
 
-int getWinner(char board[6][6]);
+int getWinner(char board[6][6]) {
+    int winner;
+    if (winner == 2) {
+        return 2;
+    } else if (winner = 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
