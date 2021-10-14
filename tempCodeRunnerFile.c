@@ -1,2 +1,0 @@
-
-    board[row][column] = 'O';

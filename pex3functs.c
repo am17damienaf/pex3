@@ -20,8 +20,10 @@ void computerTakeTurn(char board[6][6]) {
     do {
         column = rand() % 6;
     } while (board[0][column] != '.');
-    while (board[column][row] != '.' && row > -1) {
+    while (board[row][column] != '.' && row > -1) {
         --row;
+    }
+    if (board[row][column] == '.') {
         board[row][column] = 'O';
     }
     printf("the computer chooses column: %d\n", column + 1);
@@ -41,8 +43,8 @@ void displayGameBoard(char board[6][6]) {
 
 int getIntRange(int lowVal, int highVal) {
     int uVal = 0;
-    getIntSafe();
-    while (uVal < lowVal && uVal > highVal) {
+    uVal = getIntSafe();
+    while (uVal < lowVal || uVal > highVal) {
         printf("%d is not valid; enter a value between %d and %d: ", uVal, lowVal, highVal);
         scanf("%d", &uVal);
     }
@@ -71,12 +73,12 @@ bool legalPlay(char board[6][6], int column){
 
 void placePiece(char board[6][6], char piece, int column) {
     int row = 5;
-    do {
-        if (board[row][column] == '.') {
-            board[row][column] = piece;
-        }
+    while (board[row][column] != '.' && row > -1) {
         --row;
-    } while (board[column][row] != '.' && row > -1);
+    }
+    if (board[row][column] == '.') {
+        board[row][column] = 'X';
+    }
     displayGameBoard(board);
 }
 

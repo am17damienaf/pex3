@@ -33,13 +33,13 @@ int main() {
     }
     switch (getWinner(gameBoard)) {
         case 0:
-            printf("tie game.");
+            printf("tie game.\n");
             break;
         case 1:
-            printf("you win!");
+            printf("you win!]n");
             break;
         case 2:
-            printf("you lose!");
+            printf("you lose!\n");
             break;
     }
 
