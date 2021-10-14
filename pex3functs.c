@@ -16,16 +16,16 @@ void clearGameBoard(char board[6][6]){
 
 void computerTakeTurn(char board[6][6]) {
     int column = 0;
-    int row = 0;
+    int row = 5;
     do {
         column = rand() % 6;
-    } while (board[column][5] != '.');
+    } while (board[0][column] != '.');
     do {
-        if (board[column][row] == '.') {
-            board[column][row] = 'O';
+        if (board[row][column] == '.') {
+            board[row][column] = 'O';
         }
-        ++row;
-    } while (board[column][row] != '.' && row < 6);
+        --row;
+    } while (board[column][row] != '.' && row > -1);
     printf("the computer chooses column: %d\n", column);
     displayGameBoard(board);
 }
@@ -62,7 +62,13 @@ int getIntSafe() {
     return value;
 }
 
-bool legalPlay(char board[6][6], int column);
+bool legalPlay(char board[6][6], int column){
+    if (board[0][column] != '.') {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 void placePiece(char board[6][6], char piece, int column);
 
